@@ -1,0 +1,21 @@
+
+<suite name="DemoblazeSuit" verbose="1" parallel="false">
+    <test name="Run All Tests">
+        <classes>
+            <class name="test.SignUpTests"/>
+            <class name="test.LoginTests"/>
+            <class name="test.ContactTests"/>
+            <class name="test.CartTests"/>
+            <class name="test.PaymentTests"/>
+        </classes>
+    </test>
+
+    <test name="Senario Test">
+        <classes>
+            <class name="test.AddProductToCartTests"/>
+            <class name="test.DeleteProductAfterAddIt"/>
+            <class name="test.EndToEndSenarioTest"/>
+
+        </classes>
+    </test>
+</suite>
