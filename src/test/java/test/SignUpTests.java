@@ -12,59 +12,52 @@ import utils.ExtentReportManger;
 @Listeners(utils.TestListener.class)
 public class SignUpTests extends BaseTest {
 
-    /// ///////////////Test cases with Soft data///////////////////////
-    @DataProvider(name="signup data")
-    public Object[][] SignUpData()
-    {
-        String path="./src/test/java/resources/SignUpData.xlsx";
-        ExcelUtils.readExelFile(path,"sheet1");
-        int row=ExcelUtils.getNumOfRow();
-        int col=ExcelUtils.getNumOfColumn();
-        Object[][] data=new Object[row-1][col];
-        for (int  i=1;i<row;i++)
-        {
-            for (int j=0;j<col;j++)
-            {
-                data[i-1][j]=ExcelUtils.getCellData(i,j);
+    //------------------- DataProvider -------------------//
+    @DataProvider(name = "signupData")
+    public Object[][] signUpData() {
+        String path = "./src/test/java/resources/SignUpData.xlsx";
+        ExcelUtils.readExelFile(path, "sheet1");
+        int row = ExcelUtils.getNumOfRow();
+        int col = ExcelUtils.getNumOfColumn();
+        Object[][] data = new Object[row - 1][col];
+        for (int i = 1; i < row; i++) {
+            for (int j = 0; j < col; j++) {
+                data[i - 1][j] = ExcelUtils.getCellData(i, j);
             }
         }
         return data;
-
     }
-    @Test(priority = 1 ,dataProvider = "signup data")
-    public void SinupRest(String testname,String name,String password,String expectedMessege,String type) {
-        test= ExtentReportManger.createTest(testname);
-        test.info("Start test: "+testname);
+
+    //------------------- Tests with DataProvider -------------------//
+    @Test(priority = 1, dataProvider = "signupData")
+    public void signupWithDataProvider(String testname, String name, String password,
+                                       String expectedMessage, String type) {
+        test = ExtentReportManger.createTest("SignUp Test - " + testname);
+        test.info("Start test: " + testname);
 
         SignUp signupPage = new SignUp(driver);
 
         test.info("Click on signup button");
         signupPage.clickSignUp();
 
-        test.info("Enter username : "+name);
+        test.info("Enter username: " + name);
         signupPage.enterUserName(name);
 
-        test.info("Enter password : "+password);
+        test.info("Enter password: " + password);
         signupPage.enterPassword(password);
 
         test.info("Click Sign Up button");
         signupPage.clickSignUpButton();
 
         test.info("Verify alert text");
-        if(type.equals("valid")) {
-            Assert.assertEquals(signupPage.geAlertText(), expectedMessege);
-        }
-        else {
-            Assert.assertEquals(signupPage.geAlertText(), expectedMessege);
-
-        }
-
+        Assert.assertEquals(signupPage.geAlertText(), expectedMessage);
     }
-    /// ///////////////Test cases with Hard data///////////////////////
-    @Test(priority = 1)
-    public void validSinup() {
-        test= ExtentReportManger.createTest("validSinup");
-        test.info("Start test: validSinup");
+
+    //------------------- Tests with Hard Data -------------------//
+    @Test(priority = 2)
+    public void signupWithValidCredentials_shouldSucceed() {
+        test = ExtentReportManger.createTest("SignUp With Valid Credentials - Success");
+        test.info("Start test: signupWithValidCredentials_shouldSucceed");
 
         SignUp signupPage = new SignUp(driver);
 
@@ -80,15 +73,13 @@ public class SignUpTests extends BaseTest {
         test.info("Click Sign Up button");
         signupPage.clickSignUpButton();
 
-        test.info("Verify alert text");
         Assert.assertEquals(signupPage.geAlertText(), "Sign up successful.");
-
     }
 
-    @Test(priority = 2)
-    public void invalidSignupwhereUsenameIsEmpty() {
-        test= ExtentReportManger.createTest("invalid Signup where Usename Is Empty");
-        test.info("Start test: invalid Signup where Usename Is Empty");
+    @Test(priority = 3)
+    public void signupWithEmptyUsername_shouldFail() {
+        test = ExtentReportManger.createTest("SignUp With Empty Username - Fail");
+        test.info("Start test: signupWithEmptyUsername_shouldFail");
 
         SignUp signupPage = new SignUp(driver);
 
@@ -101,15 +92,13 @@ public class SignUpTests extends BaseTest {
         test.info("Click Sign Up button");
         signupPage.clickSignUpButton();
 
-        test.info("Verify alert text");
         Assert.assertEquals(signupPage.geAlertText(), "Please fill out Username and Password.");
     }
 
-    @Test(priority = 3)
-    public void invalidSignupWherePasswordIsEmpty() {
-        test= ExtentReportManger.createTest("invalidSignup where password Is Empty");
-
-        test.info("Start test: invalidSignupWherePasswordIsEmpty");
+    @Test(priority = 4)
+    public void signupWithEmptyPassword_shouldFail() {
+        test = ExtentReportManger.createTest("SignUp With Empty Password - Fail");
+        test.info("Start test: signupWithEmptyPassword_shouldFail");
 
         SignUp signupPage = new SignUp(driver);
 
@@ -122,15 +111,13 @@ public class SignUpTests extends BaseTest {
         test.info("Click Sign Up button");
         signupPage.clickSignUpButton();
 
-        test.info("Verify alert text");
         Assert.assertEquals(signupPage.geAlertText(), "Please fill out Username and Password.");
     }
 
-    @Test(priority = 4)
-    public void invalidSinup() {
-        test= ExtentReportManger.createTest("invalidSinup");
-
-        test.info("Start test: invalidSinup");
+    @Test(priority = 5)
+    public void signupWithExistingUser_shouldFail() {
+        test = ExtentReportManger.createTest("SignUp With Existing User - Fail");
+        test.info("Start test: signupWithExistingUser_shouldFail");
 
         SignUp signupPage = new SignUp(driver);
 
@@ -146,14 +133,13 @@ public class SignUpTests extends BaseTest {
         test.info("Click Sign Up button");
         signupPage.clickSignUpButton();
 
-        test.info("Verify alert text");
         Assert.assertEquals(signupPage.geAlertText(), "This user already exist.");
     }
 
-    @Test(priority = 5)
-    public void invalidSinupWhereEnterWeakPassword() {
-        test= ExtentReportManger.createTest("invalidSinup Where Enter Weak Password");
-        test.info("Start test: invalidSinupWhereEnterWeakPassword");
+    @Test(priority = 6)
+    public void signupWithWeakPassword_shouldFail() {
+        test = ExtentReportManger.createTest("SignUp With Weak Password - Fail");
+        test.info("Start test: signupWithWeakPassword_shouldFail");
 
         SignUp signupPage = new SignUp(driver);
 
@@ -169,8 +155,6 @@ public class SignUpTests extends BaseTest {
         test.info("Click Sign Up button");
         signupPage.clickSignUpButton();
 
-        test.info("Verify alert text");
         Assert.assertEquals(signupPage.geAlertText(), "this password is weak");
-
     }
 }

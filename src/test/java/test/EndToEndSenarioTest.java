@@ -12,7 +12,6 @@ public class EndToEndSenarioTest extends BaseTest {
     String userName="moaz19652213";
     String password="moaz19652213";
 
-
     @Test(priority = 1)
     public void testSignUp() {
 

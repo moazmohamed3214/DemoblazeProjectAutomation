@@ -25,20 +25,20 @@ public class Contact {
     {
         elementWaitToVisble(driver,contactLoctor).click();
     }
-    public void entercontactEmail(String email)
+    public void enterContactEmail(String email)
     {
         elementWaitToVisble(driver,contactEmailLoctor).sendKeys(email);
     }
-    public void entereName(String name)
+    public void enterName(String name)
     {
         elementWaitToVisble(driver,contactNameLoctor).sendKeys(name);
     }
 
-    public void enterMessege(String messege)
+    public void enterMessage(String messege)
     {
         elementWaitToVisble(driver,contactMessageLoctor).sendKeys(messege);
     }
-    public void clickSendMessege()
+    public void clickSendMessage()
     {
         elementWaitToVisble(driver,sendMessegeButtonLoctor).click();
     }

@@ -21,7 +21,6 @@ public class CartTests extends BaseTest {
         test.info("Selecting a product");
         homePage.clickProduct();
 
-
         test.info("Clicking 'Add to Cart' button");
         homePage.clickAddToCartButton();
 
