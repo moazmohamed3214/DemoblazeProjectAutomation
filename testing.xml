@@ -1,4 +1,3 @@
-
 <suite name="DemoblazeSuit" verbose="1" parallel="false">
     <test name="Run All Tests">
         <classes>
@@ -9,7 +8,6 @@
             <class name="test.PaymentTests"/>
         </classes>
     </test>
-
     <test name="Senario Test">
         <classes>
             <class name="test.AddProductToCartTests"/>
