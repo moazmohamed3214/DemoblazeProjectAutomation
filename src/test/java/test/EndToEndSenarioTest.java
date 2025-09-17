@@ -6,16 +6,15 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.*;
 import utils.ExtentReportManger;
-
 @Listeners(utils.TestListener.class)
 public class EndToEndSenarioTest extends BaseTest {
-    String userName="moaz19652213";
-    String password="moaz19652213";
+    String userName="moaz196522134312";
+    String password="moaz196522134312";
 
     @Test(priority = 1)
-    public void testSignUp() {
+    public void EndToEndSenarioTest() {
 
-        test = ExtentReportManger.createTest("SignUp Test");
+        test = ExtentReportManger.createTest(" EndToEnd Senario Test");
         SignUp signUp = new SignUp(driver);
         test.info("click on siginup button");
         signUp.clickSignUp();
