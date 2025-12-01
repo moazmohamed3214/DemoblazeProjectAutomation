@@ -28,7 +28,6 @@ public class EndToEndSenarioTest extends BaseTest {
         Assert.assertEquals(signUp.geAlertText(), "Sign up successful.");
         test.pass(" Sign up successful.");
 
-
         Login login = new Login(driver);
 
         test.info("Click on login button");

@@ -33,7 +33,6 @@ public class Login {
     public void enterUserName(String name)
     {
         elementWaitToVisble(driver,userNameField).sendKeys(name);
-
     }
     public void enterPassword(String password)
     {

@@ -132,7 +132,6 @@ public class LoginTests extends BaseTest {
         login.enterPassword("");
         test.info("Click login button");
         login.clickLoginButton();
-
         Assert.assertEquals(login.getAlertText(), "Please fill out Username and Password.");
     }
 }
